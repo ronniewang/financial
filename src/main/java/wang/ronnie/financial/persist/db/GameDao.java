@@ -33,7 +33,9 @@ public class GameDao {
         SqlParameterSource paramSource = new MapSqlParameterSource()
                 .addValue("person", game.getPerson())
                 .addValue("create_time", new Date())
-                .addValue("thing", game.getThing());
+                .addValue("thing", game.getThing())
+                .addValue("day", game.getDay())
+                .addValue("score", game.getScore());
         gameActor.execute(paramSource);
     }
 
@@ -62,6 +64,8 @@ public class GameDao {
             game.setCreateTime(resultSet.getDate("create_time"));
             game.setPerson(resultSet.getString("person"));
             game.setThing(resultSet.getString("thing"));
+            game.setScore(resultSet.getInt("score"));
+            game.setDay(resultSet.getDate("day"));
             return game;
         }
     }

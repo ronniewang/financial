@@ -13,6 +13,9 @@ public class Game implements Serializable {
 
     private String thing;
 
+    private Integer score;
+
+    private Date day;
 
     private static final long serialVersionUID = 1L;
 
@@ -54,5 +57,25 @@ public class Game implements Serializable {
     public void setThing(String thing) {
 
         this.thing = thing;
+    }
+
+    public Integer getScore() {
+
+        return score;
+    }
+
+    public void setScore(Integer score) {
+
+        this.score = score;
+    }
+
+    public Date getDay() {
+
+        return day;
+    }
+
+    public void setDay(Date day) {
+
+        this.day = day;
     }
 }

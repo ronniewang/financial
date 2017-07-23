@@ -14,24 +14,25 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-body">
-                <div class="col-md-2">
-                    <span class="label label-success">Intelligence</span></div>
-                <div class="col-md-10">
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-info" v-bind:style="style">
-                            <span class="sr-only">60% Complete (warning)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <span class="label label-success">PhysicalStrength</span></div>
-                <div class="col-md-10">
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-success" v-bind:style="style">
-                            <span class="sr-only">60% Complete (warning)</span>
-                        </div>
-                    </div>
-                </div>
+                <!--<div class="col-md-2">-->
+                    <!--<span class="label label-success">Intelligence</span></div>-->
+                <!--<div class="col-md-10">-->
+                    <!--<div class="progress">-->
+                        <!--<div class="progress-bar progress-bar-info" v-bind:style="style">-->
+                            <!--<span class="sr-only">60% Complete (warning)</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-md-2">-->
+                    <!--<span class="label label-success">PhysicalStrength</span></div>-->
+                <!--<div class="col-md-10">-->
+                    <!--<div class="progress">-->
+                        <!--<div class="progress-bar progress-bar-success" v-bind:style="style">-->
+                            <!--<span class="sr-only">60% Complete (warning)</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                我们都是奉献的人
             </div>
         </div>
     </div>
@@ -41,12 +42,12 @@
     <div class="col-md-6" id="wx">
         <div class="panel panel-success">
             <div class="panel-heading">
-                <h3 class="panel-title">Xia</h3>
+                <h3 class="panel-title">WX</h3>
             </div>
             <div class="panel-body">
                 <ul class="list-group">
-                    <li class="list-group-item" v-for="wx in wxs">{{wx.thing}}
-                        <button type="button" class="btn btn-success btn-xs" style="float: right;">+10分</button>
+                    <li class="list-group-item" v-for="wx in wxs">{{wx.day}} | {{wx.thing}}
+                        <button type="button" class="btn btn-success btn-xs" style="float: right;">+{{wx.score}}分</button>
                     </li>
                 </ul>
             </div>
@@ -55,13 +56,13 @@
     <div class="col-md-6" id="wsy">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">Ronnie</h3>
+                <h3 class="panel-title">WSY</h3>
             </div>
             <div class="panel-body">
                 <ul class="list-group">
                     <li class="list-group-item" v-for="wsy in wsys">
-                        {{wsy.thing}}
-                        <button type="button" class="btn btn-success btn-xs" style="float: right;">+10分</button>
+                        {{wsy.day}} | {{wsy.thing}}
+                        <button type="button" class="btn btn-success btn-xs" style="float: right;">+{{wsy.score}}分</button>
                     </li>
                 </ul>
             </div>
@@ -70,13 +71,6 @@
 </div>
 </body>
 <script>
-    var info = new Vue({
-        el: '#info',
-        data: {
-            style: {width: '80%'}
-        }
-    })
-
     var wsy = new Vue({
         el: '#wsy',
         data: {

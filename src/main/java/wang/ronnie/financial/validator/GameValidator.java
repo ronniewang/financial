@@ -24,5 +24,6 @@ public class GameValidator implements Validator {
         Game game = (Game) target;
         ValidationUtils.rejectIfEmpty(errors, "thing", "thing is blank");
         ValidationUtils.rejectIfEmpty(errors, "person", "person is blank");
+        ValidationUtils.rejectIfEmpty(errors, "day", "day is blank");
     }
 }
