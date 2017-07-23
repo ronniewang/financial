@@ -19,11 +19,9 @@ public class Assert implements Serializable {
 
     private Date updateTime;
 
-    private Integer createUserId;
+    private String createUser;
 
-    private Integer updateUserId;
-
-    private Integer userId;
+    private String updateUser;
 
     private String name;
 
@@ -89,24 +87,24 @@ public class Assert implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Integer getCreateUserId() {
+    public String getCreateUser() {
 
-        return createUserId;
+        return createUser;
     }
 
-    public void setCreateUserId(Integer createUserId) {
+    public void setCreateUser(String createUser) {
 
-        this.createUserId = createUserId;
+        this.createUser = createUser;
     }
 
-    public Integer getUpdateUserId() {
+    public String getUpdateUser() {
 
-        return updateUserId;
+        return updateUser;
     }
 
-    public void setUpdateUserId(Integer updateUserId) {
+    public void setUpdateUser(String updateUser) {
 
-        this.updateUserId = updateUserId;
+        this.updateUser = updateUser;
     }
 
     public Integer getType() {
@@ -117,16 +115,6 @@ public class Assert implements Serializable {
     public void setType(Integer type) {
 
         this.type = type;
-    }
-
-    public Integer getUserId() {
-
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-
-        this.userId = userId;
     }
 
     public String getName() {

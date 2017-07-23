@@ -1,5 +1,7 @@
 package wang.ronnie.financial.model;
 
+import wang.ronnie.financial.Constants;
+
 import java.util.List;
 
 /**
@@ -10,6 +12,12 @@ public class JsonArrayResponse<T> extends AbstractResponse {
     public JsonArrayResponse(List<T> list, String code, String msg) {
         this.setCode(code);
         this.setMsg(msg);
+        this.list = list;
+    }
+
+    public JsonArrayResponse(List<T> list) {
+        this.setCode(Constants.OK_CODE);
+        this.setMsg(Constants.OK_MSG);
         this.list = list;
     }
 

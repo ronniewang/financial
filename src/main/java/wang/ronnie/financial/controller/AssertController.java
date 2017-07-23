@@ -6,12 +6,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import wang.ronnie.financial.model.ErrorResponse;
+import wang.ronnie.financial.model.JsonArrayResponse;
 import wang.ronnie.financial.persist.model.Assert;
 import wang.ronnie.financial.service.AssertService;
 import wang.ronnie.financial.validator.AssertValidator;
 
 import javax.validation.Valid;
-import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by ronniewang on 17/7/19.
@@ -32,12 +34,12 @@ public class AssertController {
     @Autowired
     private AssertService assertService;
 
-    @RequestMapping("/{userId}")
+    @RequestMapping("/{id}")
     @ResponseBody
-    public List<Assert> all(@PathVariable Integer userId, @AuthenticationPrincipal UserDetails userDetails) {
+    public JsonArrayResponse<Assert> all(@PathVariable Integer id, @AuthenticationPrincipal UserDetails userDetails) {
 
         System.out.println(userDetails);
-        return assertService.all(userId);
+        return new JsonArrayResponse<Assert>(assertService.all(id));
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -46,5 +48,18 @@ public class AssertController {
 
         assertService.add(a);
         return "success";
+    }
+
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public ErrorResponse delete(@PathVariable Optional<Integer> id) {
+
+        if (id.isPresent()) {
+            assertService.delete(id.get());
+            return new ErrorResponse("0", "success");
+        } else {
+            return new ErrorResponse("1", "error");
+        }
     }
 }

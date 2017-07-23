@@ -21,8 +21,13 @@ public class AssertService {
         assertDao.insert(a);
     }
 
-    public List<Assert> all(int userId) {
+    public void delete(int id) {
 
-        return assertDao.findByUid(userId);
+        assertDao.delete(id);
+    }
+
+    public List<Assert> all(int id) {
+
+        return assertDao.findById(id);
     }
 }

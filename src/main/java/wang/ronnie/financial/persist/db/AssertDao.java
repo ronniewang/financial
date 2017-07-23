@@ -34,20 +34,27 @@ public class AssertDao {
                 .addValue("amount", a.getAmount())
                 .addValue("create_time", new Date())
                 .addValue("update_time", new Date())
-                .addValue("create_user_id", a.getCreateUserId())
-                .addValue("update_user_id", a.getUpdateUserId())
+                .addValue("create_user", a.getCreateUser())
+                .addValue("update_user", a.getUpdateUser())
                 .addValue("name", a.getName())
-                .addValue("user_id", a.getUserId())
                 .addValue("month", a.getMonth())
                 .addValue("year", a.getYear())
                 .addValue("type", a.getType());
         insertActor.execute(paramSource);
     }
 
-    public List<Assert> findByUid(int userId) {
+    public void delete(int id) {
 
-        String sql = "SELECT * FROM `assert` WHERE user_id = :user_id";
-        SqlParameterSource paramSource = new MapSqlParameterSource().addValue("user_id", userId);
+        String sql = "DELETE FROM `assert` WHERE id = :id";
+        SqlParameterSource paramSource = new MapSqlParameterSource()
+                .addValue("id", id);
+        namedParameterJdbcTemplate.update(sql, paramSource);
+    }
+
+    public List<Assert> findById(int id) {
+
+        String sql = "SELECT * FROM `assert` WHERE id = :id";
+        SqlParameterSource paramSource = new MapSqlParameterSource().addValue("id", id);
         return namedParameterJdbcTemplate.query(sql, paramSource, new AssertRowMapper());
     }
 
@@ -61,10 +68,9 @@ public class AssertDao {
             a.setAmount(resultSet.getInt("amount"));
             a.setCreateTime(resultSet.getDate("create_time"));
             a.setUpdateTime(resultSet.getDate("update_time"));
-            a.setCreateUserId(resultSet.getInt("create_user_id"));
-            a.setUpdateUserId(resultSet.getInt("update_user_id"));
+            a.setCreateUser(resultSet.getString("create_user"));
+            a.setUpdateUser(resultSet.getString("update_user"));
             a.setName(resultSet.getString("name"));
-            a.setUserId(resultSet.getInt("user_id"));
             a.setMonth(resultSet.getInt("month"));
             a.setYear(resultSet.getInt("year"));
             a.setType(resultSet.getInt("type"));
