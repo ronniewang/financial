@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body class="container">
+<div class="row" id="info">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-md-2">
+                    <span class="label label-success">Intelligence</span></div>
+                <div class="col-md-10">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-info" v-bind:style="style">
+                            <span class="sr-only">60% Complete (warning)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <span class="label label-success">PhysicalStrength</span></div>
+                <div class="col-md-10">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" v-bind:style="style">
+                            <span class="sr-only">60% Complete (warning)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6" id="wx">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Xia</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item" v-for="wx in wxs">{{wx.thing}}
+                        <button type="button" class="btn btn-success btn-xs" style="float: right;">+10分</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" id="wsy">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Ronnie</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item" v-for="wsy in wsys">
+                        {{wsy.thing}}
+                        <button type="button" class="btn btn-success btn-xs" style="float: right;">+10分</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    var info = new Vue({
+        el: '#info',
+        data: {
+            style: {width: '80%'}
+        }
+    })
+
+    var wsy = new Vue({
+        el: '#wsy',
+        data: {
+            wsys: []
+        },
+        mounted: function () {
+            var $vm = this;
+            axios.get("/game/wsy")
+                .then(function (response) {
+                    console.log(response);
+                    $vm.wsys = response.data.list;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+    })
+
+    var wx = new Vue({
+        el: '#wx',
+        data: {
+            wxs: []
+        },
+        mounted: function () {
+            var $vm = this;
+            axios.get("/game/wx")
+                .then(function (response) {
+                    console.log(response);
+                    $vm.wxs = response.data.list;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+    })
+
+</script>
+</html>

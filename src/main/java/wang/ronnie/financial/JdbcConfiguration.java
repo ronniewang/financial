@@ -40,4 +40,9 @@ public class JdbcConfiguration {
 
         return new SimpleJdbcInsert(dataSource()).withTableName("assert");
     }
+    @Bean
+    public SimpleJdbcInsert gameInsert() {
+
+        return new SimpleJdbcInsert(dataSource()).withTableName("game");
+    }
 }
