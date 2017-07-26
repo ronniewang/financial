@@ -32,7 +32,7 @@ public class GameController {
     @Autowired
     private GameService gameService;
 
-    @RequestMapping("/{person}")
+    @RequestMapping("/person/{person}")
     @ResponseBody
     public JsonArrayResponse<Game> findByPerson(@PathVariable String person) {
 
