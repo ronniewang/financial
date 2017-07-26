@@ -78,4 +78,17 @@ public class Game implements Serializable {
 
         this.day = day;
     }
+
+    @Override
+    public String toString() {
+
+        return "Game{" +
+                "id=" + id +
+                ", createTime=" + createTime +
+                ", person='" + person + '\'' +
+                ", thing='" + thing + '\'' +
+                ", score=" + score +
+                ", day=" + day +
+                '}';
+    }
 }
