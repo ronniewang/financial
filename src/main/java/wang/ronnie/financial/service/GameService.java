@@ -16,9 +16,9 @@ public class GameService {
     @Autowired
     private GameDao gameDao;
 
-    public void add(Game game) {
+    public int add(Game game) {
 
-        gameDao.insert(game);
+        return gameDao.add(game);
     }
 
     public List<Game> findByPerson(String person) {

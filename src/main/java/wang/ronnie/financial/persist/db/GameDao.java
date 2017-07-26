@@ -28,7 +28,7 @@ public class GameDao {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public void insert(Game game) {
+    public int add(Game game) {
 
         SqlParameterSource paramSource = new MapSqlParameterSource()
                 .addValue("person", game.getPerson())
@@ -36,7 +36,7 @@ public class GameDao {
                 .addValue("thing", game.getThing())
                 .addValue("day", game.getDay())
                 .addValue("score", game.getScore());
-        gameActor.execute(paramSource);
+        return gameActor.execute(paramSource);
     }
 
     public List<Game> findByPerson(String person) {
