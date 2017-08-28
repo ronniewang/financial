@@ -12,6 +12,13 @@ public class JsonObjectResponse<T> extends AbstractResponse {
         this.object = object;
     }
 
+    public JsonObjectResponse(String code, String msg) {
+
+        this.setCode(code);
+        this.setMsg(msg);
+        this.object = null;
+    }
+
     private T object;
 
     public T getObject() {
